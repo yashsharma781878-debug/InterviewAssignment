@@ -1,6 +1,6 @@
-public class callAPI {
+public class ApiCalloutUtility {
     
-    public static void callingapi(){
+    public static void doCallout(){
         HttpRequest request = new HttpRequest();
         List<Api_Callout_Setting__mdt> endPointSettings = [select Developername,End_Point_URL__c from Api_Callout_Setting__mdt WHERE DeveloperName = 'End_Point_URL'];
         
