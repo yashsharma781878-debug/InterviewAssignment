@@ -1,0 +1,25 @@
+public class callAPI {
+    
+    public static void callingapi(){
+        HttpRequest request = new HttpRequest();
+        List<Api_Callout_Setting__mdt> endPointSettings = [select Developername,End_Point_URL__c from Api_Callout_Setting__mdt WHERE DeveloperName = 'End_Point_URL'];
+        
+        if(!endPointSettings.isEmpty()){
+            request.setEndPoint(endPointSettings[0].End_Point_URL__c);
+        }
+        request.setMethod('GET');
+        
+        HttpResponse res = new HttpResponse();
+        Http http = new Http();
+        
+        res = http.send(request);
+        
+        if(res.getStatusCode() == 200){
+            System.debug(res.getBody());
+        }else{
+            System.debug(res);
+        }
+        
+    }
+   
+}
