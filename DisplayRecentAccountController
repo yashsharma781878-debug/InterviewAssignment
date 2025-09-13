@@ -1,0 +1,11 @@
+public with sharing class DisplayRecentAccountController {
+    @AuraEnabled(cacheable=true) 
+    public static List<Account> getMostRecentAccount(){
+        try {
+            List<Account>accountList = [SELECT Name, Phone from Account Order By CreatedDate DESC LIMIT 10];
+            return accountList;
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+}
